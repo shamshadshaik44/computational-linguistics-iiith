@@ -1,0 +1,8 @@
+1. Reform sentence button(reset button):At any moment it should return every word back to its original position 
+2.Get correct sentence: when the ans is wrong get correct sentence button should be visible and the correct answers should be displayed
+3.Check the correctness button invokes the get correct sentence.
+4.the jumbled sentences should be displayed based upon the option selected.(english or hindi)
+
+
+I Would like to add some Additional features:
+1.If the first ques ans is right then there should be a button to the next ques .
