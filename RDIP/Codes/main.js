@@ -1,11 +1,14 @@
-/*function getOption(lang)
+function getOption(lang)
 {
 	if(lang=="null")
 	{
 		alert('Select language');
 		return false;
 	}
-} */
+	else{
+		document.getElementById("content").style.display="block";
+	}
+} 
 var x="";
 var i,j,y="";
 var eng={
@@ -86,7 +89,7 @@ var hin={
 ]
 }
 
-for( i in eng.sen)
+/*for( i in eng.sen)
 {
 	for( j in eng.sen[i].types)
 	{
@@ -107,4 +110,4 @@ for( i in hin.sen)
 		
 	}
 }
-document.getElementById("ans2").innerHTML = y;
+document.getElementById("ans2").innerHTML = y; */
