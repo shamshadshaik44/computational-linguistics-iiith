@@ -1,9 +1,9 @@
-var i,row,newString,count,btncount,len,btn,j,k,h;
+var i,row,newString,count,btncount,len,btn,j,k,h,lan;
 var sentence=document.getElementById("sentence");
 var statement=document.getElementById("statement1");
 var reform=document.getElementById("reform");
 var check=document.getElementById("check");
-
+var result=document.getElementById("result");
 var finalsent="";
 function getOption(lang)
 {
@@ -19,11 +19,13 @@ function getOption(lang)
 		{
       sentence.innerHTML="";
       statement.innerHTML="";
+      lan="english";
 		     row=randomNumber(lang);
                 displaySplit(english[row][0]);
 		}
 		else if(lang=="hindi")
 		{
+       lan="hindi";
        sentence.innerHTML="";
        statement.innerHTML=" ";
 			row=randomNumber(lang);
@@ -110,6 +112,7 @@ function randomNumber(lang)
 }
 function displaySplit(string)
 { 
+       document.getElementById("words").innerHTML="";
        newString=string.split(" ");
        len=newString.length;
        count=0;
@@ -132,17 +135,21 @@ function displaySplit(string)
         j+=1;
        
         }
+
        }
-      
+     
 }
 function hiding(id,value)
 {
- finalsent+=value+"  ";
+ finalsent+=value+" ";
  sentence.innerHTML=finalsent;
  statement.innerHTML="<b>Formed Sentences(after Selecting Words)</b>";
  document.getElementById(id).style.display="none";
  btncount+=1;
  reform.innerHTML="<button id='reformbtn' onclick='reformSentence()'>Re-Form the sentence</button>"
+  console.log(count);
+  console.log(btncount);
+  console.log(newString);
  if(count==btncount)
  {
   check.innerHTML="<button id='checkbtn' onclick='checkSentence()'>Check the Sentence</button>"
@@ -157,10 +164,35 @@ function reformSentence()
   sentence.innerHTML="";
   statement.innerHTML="";
   finalsent="";
-  btncount=0;
-  count=0;
+  check.innerHTML="";
+  result.innerHTML="";
+  if(lan=="english")
+  {
+  newString=english[row][0];
+  }
+  else if(lan=="hindi")
+  {
+    newString=hindi[row][0];
+  }
+  displaySplit(newString);
 }
 function checkSentence()
 {
-  console.log("right or wrong");
+  if(lan=="english")
+  {
+   ans=english[row].includes(finalsent.trim());
+  }
+  else if(lang=="hindi")
+  {
+    ans=hindi[row].includes(finalsent.trim());
+  }
+  if(ans==true)
+  {
+    result.innerHTML="RIGHT ANSWER";
+  }
+  if(ans==false)
+  {
+    result.innerHTML="Wrong ANSWER";
+  }
+
 }
