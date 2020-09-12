@@ -1,5 +1,10 @@
-var x="";
-var i,row,newString,count,j,k,h,y="";
+var i,row,newString,count,btncount,len,btn,j,k,h;
+var sentence=document.getElementById("sentence");
+var statement=document.getElementById("statement1");
+var reform=document.getElementById("reform");
+var check=document.getElementById("check");
+
+var finalsent="";
 function getOption(lang)
 {
         document.getElementById("words").innerHTML="";
@@ -12,12 +17,15 @@ function getOption(lang)
 		document.getElementById("content").style.display="block";
 		if(lang=="english")
 		{
+      sentence.innerHTML="";
+      statement.innerHTML="";
 		     row=randomNumber(lang);
                 displaySplit(english[row][0]);
 		}
 		else if(lang=="hindi")
 		{
-
+       sentence.innerHTML="";
+       statement.innerHTML=" ";
 			row=randomNumber(lang);
                 displaySplit(hindi[row][0]);
 		}
@@ -96,33 +104,6 @@ var hindi=[["राम और श्याम बाजार गयें",
                            " है वहाँ एक बड़ी सी किताब",
                          "है वहाँ बड़ी सी एक किताब"]
 ]
-
-/*
-for( i in eng)
-{ 
-	document.writeln(Number(i));
-	for( j in eng[i])
-	{
-		 
-		
-			 // x=x+eng[i][j]+"<br>";
-		
-	}
-}
-document.getElementById("ans1").innerHTML = x;
-
-
-for( i in hin.sen)
-{
-	for( j in hin.sen[i].types)
-	{
-		
-		
-			y=y+hin.sen[i].types[j]+"<br>";
-		
-	}
-}
-document.getElementById("ans2").innerHTML = y; */
 function randomNumber(lang)
 {
    return Math.round(Math.random()*lang.length);  
@@ -130,18 +111,56 @@ function randomNumber(lang)
 function displaySplit(string)
 { 
        newString=string.split(" ");
-       var len=newString.length;
+       len=newString.length;
        count=0;
+       btncount=0;
+       j=0;
        while(len>count)
        {
-       	i=Math.round(Math.random()*newString.length) ;
-       	if(newString[i])
-       	{
-       	var btn=document.createElement("BUTTON");
-       	btn.innerHTML=newString[i];
-       	newString[i]=0;
-       	count+=1;
-       	document.getElementById("words").appendChild(btn);
+        i=Math.round(Math.random()*newString.length);
+        if(newString[i])
+        {
+         btn=document.createElement("button");
+        btn.innerHTML=newString[i];
+        btn.id="buton"+j;
+        btn.addEventListener("click",function(){
+              hiding(this.id,this.innerHTML);
+        });
+        newString[i]=0;
+        count+=1;
+        document.getElementById("words").appendChild(btn);
+        j+=1;
+       
+        }
        }
-       }     
+      
+}
+function hiding(id,value)
+{
+ finalsent+=value+"  ";
+ sentence.innerHTML=finalsent;
+ statement.innerHTML="<b>Formed Sentences(after Selecting Words)</b>";
+ document.getElementById(id).style.display="none";
+ btncount+=1;
+ reform.innerHTML="<button id='reformbtn' onclick='reformSentence()'>Re-Form the sentence</button>"
+ if(count==btncount)
+ {
+  check.innerHTML="<button id='checkbtn' onclick='checkSentence()'>Check the Sentence</button>"
+ }
+}
+function reformSentence()
+{
+  for(k=0;k<=len-1;k++)
+  {
+    document.getElementById("buton"+k).style.display="inline-block";
+  }
+  sentence.innerHTML="";
+  statement.innerHTML="";
+  finalsent="";
+  btncount=0;
+  count=0;
+}
+function checkSentence()
+{
+  console.log("right or wrong");
 }
