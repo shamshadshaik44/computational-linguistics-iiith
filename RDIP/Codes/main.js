@@ -147,9 +147,6 @@ function hiding(id,value)
  document.getElementById(id).style.display="none";
  btncount+=1;
  reform.innerHTML="<button id='reformbtn' onclick='reformSentence()'>Re-Form the sentence</button>"
-  console.log(count);
-  console.log(btncount);
-  console.log(newString);
  if(count==btncount)
  {
   check.innerHTML="<button id='checkbtn' onclick='checkSentence()'>Check the Sentence</button>"
