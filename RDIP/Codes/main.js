@@ -187,12 +187,17 @@ function checkSentence()
   if(ans==false)
   {
     result.innerHTML="WRONG ANSWER  :(";
-    showAns.innerHTML="<button id='ansbtn' onclick='correctAns()'>GET CORRECT ANSWER</button>"
+    correctAnswer.innerHTML="";
+    document.getElementById('correctAns').style.display="block";
+    showAns.innerHTML="<button id='ansbtn' onclick='correctAns()'>GET CORRECT ANSWER</button>";
+    
   }
 
 }
 function correctAns()
 {
+  answers="";
+  showAns.innerHTML="<button id='ansbtn' onclick='hideCorrect()'>HIDE THE CORRECT SENTENCES</button>"
   if(lan=="english")
   {
     for(i=0;i<english[row].length;i++)
@@ -208,6 +213,7 @@ function correctAns()
     }
   }
   correctAnswer.innerHTML=answers;
+  
 }
 function initialize()
 {
@@ -221,5 +227,17 @@ function initialize()
   finalsent="";
   correctAnswer.innerHTML="";
   answers="";
-
+  document.getElementById('correctAns').style.display=" ";
 }
+ function hideCorrect()
+ {
+    
+  document.getElementById('correctAns').style.display="none";
+  showAns.innerHTML="<button id='ansbtn' onclick='getAns()'>GET ANSWERS</button>";
+
+ }
+ function getAns()
+ {
+  document.getElementById('correctAns').style.display="block";
+  showAns.innerHTML="<button id='ansbtn' onclick='hideCorrect()'>HIDE THE CORRECT SENTENCES</button>";
+ }
