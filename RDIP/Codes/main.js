@@ -1,13 +1,15 @@
-var i,row,newString,count,btncount,len,btn,j,k,h,lan;
+var i,row,newString,count,btncount,len,answers,btn,j,k,h,lan,ans;
 var sentence=document.getElementById("sentence");
 var statement=document.getElementById("statement1");
 var reform=document.getElementById("reform");
 var check=document.getElementById("check");
 var result=document.getElementById("result");
 var finalsent="";
+var showAns=document.getElementById("show");
+var correctAnswer=document.getElementById("correctAns");
 function getOption(lang)
 {
-        document.getElementById("words").innerHTML="";
+  initialize();
 	if(lang=="null")
 	{
 		alert('Select language');
@@ -17,19 +19,17 @@ function getOption(lang)
 		document.getElementById("content").style.display="block";
 		if(lang=="english")
 		{
-      sentence.innerHTML="";
-      statement.innerHTML="";
+      initialize();
       lan="english";
 		     row=randomNumber(lang);
-                displaySplit(english[row][0]);
+         displaySplit(english[row][0]);
 		}
 		else if(lang=="hindi")
 		{
+       initialize();
        lan="hindi";
-       sentence.innerHTML="";
-       statement.innerHTML=" ";
 			row=randomNumber(lang);
-                displaySplit(hindi[row][0]);
+      displaySplit(hindi[row][0]);
 		}
 	}
 }
@@ -112,7 +112,7 @@ function randomNumber(lang)
 }
 function displaySplit(string)
 { 
-       document.getElementById("words").innerHTML="";
+       initialize();
        newString=string.split(" ");
        len=newString.length;
        count=0;
@@ -158,11 +158,7 @@ function reformSentence()
   {
     document.getElementById("buton"+k).style.display="inline-block";
   }
-  sentence.innerHTML="";
-  statement.innerHTML="";
-  finalsent="";
-  check.innerHTML="";
-  result.innerHTML="";
+  initialize();
   if(lan=="english")
   {
   newString=english[row][0];
@@ -175,21 +171,55 @@ function reformSentence()
 }
 function checkSentence()
 {
+  ans="";
   if(lan=="english")
   {
    ans=english[row].includes(finalsent.trim());
   }
-  else if(lang=="hindi")
+  else if(lan=="hindi")
   {
     ans=hindi[row].includes(finalsent.trim());
   }
   if(ans==true)
   {
-    result.innerHTML="RIGHT ANSWER";
+    result.innerHTML="RIGHT ANSWER!!!";
   }
   if(ans==false)
   {
-    result.innerHTML="Wrong ANSWER";
+    result.innerHTML="WRONG ANSWER  :(";
+    showAns.innerHTML="<button id='ansbtn' onclick='correctAns()'>GET CORRECT ANSWER</button>"
   }
+
+}
+function correctAns()
+{
+  if(lan=="english")
+  {
+    for(i=0;i<english[row].length;i++)
+    {
+      answers+=english[row][i]+"<br>";
+    }
+  }
+  else if(lan=="hindi")
+  {
+    for(i=0;i<hindi[row].length;i++)
+    {
+      answers+=hindi[row][i]+"<br>";
+    }
+  }
+  correctAnswer.innerHTML=answers;
+}
+function initialize()
+{
+  document.getElementById("words").innerHTML="";
+  statement.innerHTML="";
+  sentence.innerHTML="";
+  reform.innerHTML="";
+  check.innerHTML="";
+  result.innerHTML="";
+  showAns.innerHTML="";
+  finalsent="";
+  correctAnswer.innerHTML="";
+  answers="";
 
 }
