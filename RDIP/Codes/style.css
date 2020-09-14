@@ -1,7 +1,64 @@
-body{
-	font-family: sans-serif;
-	margin:auto;
+*{
+	font-family:serif;
+   box-sizing: border-box;
 }
 div{
 	text-align: center;
+} 
+.content{
+	font-size: 1.35em;
+}
+button
+{  
+ cursor: pointer; 
+ margin-right: 20px;
+ border-radius:5px;
+ background-color: #0b3141;
+ color:white;
+}
+select{
+	font-size: 1.25em;
+	border-radius: 5px;
+}
+.nav_bar button
+{
+	margin-right:0px;
+}
+.container-fluid
+{
+	background-color:#dbf0f9;
+}
+.heading1
+{
+	background-color:#24a4d8;
+	color:white; 
+	text-align: left;
+	padding: 1px;
+	padding-top: 5px;
+	padding-left: 30px;
+	justify-content: space-between;
+}
+.heading1 h4:hover
+{
+  color: darkblue;
+  cursor: pointer;
+}
+.heading2
+{
+	background-color:#dbf0f9;
+	color:#0e3e52;
+	padding: 8px;
+	text-align: left;
+	padding-left: 50px;
+
+}
+#matter
+{
+	text-align: left;
+	font-size: 1.25em;
+	padding-left: 75px;
+}
+.dynamicbtn
+{
+	margin-right: 15px;
 }
