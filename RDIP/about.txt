@@ -4,3 +4,5 @@
 4.the jumbled sentences should be displayed based upon the option selected.(english or hindi)
 
 
+additional features:
+1.the ques are randomly changed on selecting english and hindi alterantively.
