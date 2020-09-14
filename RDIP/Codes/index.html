@@ -1,36 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Experiment</title>
 	<meta charset="utf-8"/>
     <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="Welcome to Virtual Labs - A MHRD Govt of india Initiative" name="description"/>
+    <meta content="Virtual Labs - A MHRD Govt of india Initiative" name="author"/>
+    <title>Welcome to Virtual Labs - A MHRD Govt of india Initiative</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet"/>
 </head>
-<body>
-     <h2>EXPERIMENT</h2>
-     <div>
-     <div class="selectlanguage" >
-     	<select id="lang" name="lang" onchange="getOption(this.value);">
+<body> 
+    <div class="container-fluid">
+     	<img src="http://cl-iiith.vlabs.ac.in/images/logo.jpg" alt="logo" style="max-width: 100%">
+     </div>
+    <div class="heading1">
+    <h4 ><b>COMPUTATIONAL LINGUISTICS LAB</b></h4>
+    </div>
+    <div class="heading2">
+    <h3 ><b>Forming Sentences-2</b></h3>
+    </div>
+    <!-- creating buttons in nav_bar just for layout purpose -->
+    <nav class="nav_bar bg-dark" > 
+        <button type="button" class="btn btn-dark" onclick="introduction()">INTRODUCTION</button>
+        <button type="button" class="btn btn-dark" onclick="theory()">THEORY</button>
+        <button type="button" class="btn btn-dark" onclick="objective()">OBJECTIVE</button>
+        <button type="button" class="btn btn-dark" onclick="experiment()">EXPERIMENT</button>
+        <button type="button" class="btn btn-dark" onclick="procedure()">PROCEDURE</button>
+    </nav> 
+    <div class="body">
+    <p id="matter"></p>
+    </div>
+   
+     <div  id="exp" style="display:none" >
+     	<select class="selectpicker btn-primary" id="lang" name="lang" data-style="btn-info" onchange="getOption(this.value);">
      		<option value="null">--Select Language--</option>
      		<option value="english">English</option>
      		<option value="hindi">Hindi</option>
      	</select>
-     </div>
-
- </div>
 <div id="content" style="display:none">
-<p><b>“Form a sentence (Declarative or Interrogative or any other type) from the given words"</b></p>
-<p>(select the buttons in proper order)</p>
-<p id="words"></p>
+<p id="statement0"></p>
+<p class="dynamicbtn" id="words"></p>
 <p id="statement1"></p>
-<p id="sentence"></p>
+<b><p id="sentence"></p></b>
 <p id="reform"></p>
 <p id="check"></p>
 <p id="result"></p>
 <p id="show"></p>
 <p id="correctAns"></p>
+
 </div>
- <script src="main.js"></script>
+</div>
+
+<script src="main.js"></script>
 </body>
 </html>
