@@ -4,5 +4,3 @@
 4.the jumbled sentences should be displayed based upon the option selected.(english or hindi)
 
 
-I Would like to add some Additional features:
-1.If the first ques ans is right then there should be a button to the next ques .
