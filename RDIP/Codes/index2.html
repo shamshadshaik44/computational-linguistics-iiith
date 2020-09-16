@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="Welcome to Virtual Labs - A MHRD Govt of india Initiative" name="description"/>
+    <meta content="Virtual Labs - A MHRD Govt of india Initiative" name="author"/>
+    <title>Welcome to Virtual Labs - A MHRD Govt of india Initiative</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="style2.css" rel="stylesheet"/>
+</head>
+<body> 
+    <div class="container-fluid">
+     	<img src="http://cl-iiith.vlabs.ac.in/images/logo.jpg" alt="logo" style="max-width: 100%">
+     </div>
+    <div class="heading1">
+    <h4 ><a href="http://cl-iiith.vlabs.ac.in/index.html"><b>COMPUTATIONAL LINGUISTICS LAB</b></a></h4>
+    </div>
+    <div class="heading2">
+    <h3 ><b>Tokens and Types</b></h3>
+    </div>
+    <nav class="nav_bar bg-dark" > 
+        <button type="button" class="btn btn-dark" onclick="introduction()">INTRODUCTION</button>
+        <button type="button" class="btn btn-dark" onclick="theory()">THEORY</button>
+        <button type="button" class="btn btn-dark" onclick="objective()">OBJECTIVE</button>
+        <button type="button" class="btn btn-dark" onclick="experiment()">EXPERIMENT</button>
+        <button type="button" class="btn btn-dark" onclick="quizzes()">QUIZZES</button>
+        <button type="button" class="btn btn-dark" onclick="procedure()">PROCEDURE</button>
+    </nav> 
+    <div class="body">
+    <p id="matter"></p>
+    </div>
+   
+    <div  id="exp" style="display:none" >
+     	<select class="selectpicker btn-primary" id="corpus" name="corpus" data-style="btn-info" onchange="getOption(this.value);">
+     		<option value="null">--Select a Corpus--</option>
+     		<option value="corpus1">Corpus-1</option>
+     		<option value="corpus2">Corpus-2</option>
+            <option value="corpus3">Corpus-3</option>
+     	</select>
+    <p id="corpuspara"></p>
+    </div>
+
+<script src="main2.js"></script>
+</body>
+</html>
