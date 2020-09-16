@@ -16,15 +16,21 @@ function getOption(value)
   }
   else if(value=="corpus1")
   {
-    CorpusPara.innerHTML=corpus[0];
+    CorpusPara.innerHTML=corpus[0]+"<br>"+"<br>"+
+    "<center>Enter the number of tokens and types for the above corpus:"+"<br>"+
+    "<table class='table table-bordered'><tr><td>#tokens: </td><td><input type='text' id='tokeninput' size='6'></td></tr><tr><td>#types: </td><td><input type='text' id='typeinput' size='6'></td></tr></table></center>";
   }
   else if(value=="corpus2")
   {
-     CorpusPara.innerHTML=corpus[1];
+     CorpusPara.innerHTML=corpus[1]+"<br>"+"<br>"+
+    "<center>Enter the number of tokens and types for the above corpus:"+"<br>"+
+    "<table class='table table-bordered'><tr><td>#tokens: </td><td><input type='text' id='tokeninput' size='6'></td></tr><tr><td>#types: </td><td><input type='text' id='typeinput' size='6'></td></tr></table></center>";
   }
   else if(value=="corpus3")
   {
-     CorpusPara.innerHTML=corpus[2];
+     CorpusPara.innerHTML=corpus[2]+"<br>"+"<br>"+
+    "<center>Enter the number of tokens and types for the above corpus:"+"<br>"+
+    "<table class='table table-bordered'><tr><td>#tokens: </td><td><input type='text' id='tokeninput' size='6'></td></tr><tr><td>#types: </td><td><input type='text' id='typeinput' size='6'></td></tr></table></center>";
   }
     
 }
