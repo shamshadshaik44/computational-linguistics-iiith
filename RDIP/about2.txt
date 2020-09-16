@@ -1,0 +1,8 @@
+-------------------Types and tokens-----------------
+1.Create a Dropdown with Corpus 1,corpus2,corpus 3(which contains passages) as options.
+2.Tokens are Total number of words in the passage.
+whereas types are toltal number of distinct words in the passage.
+3.taking inputs of tokens and types
+4.checking the give input answer is right or wrong.
+5.Displaying right or wrong.
+6.Later with the use of snowball stemmer finding root words and verifying it with given input answer.
