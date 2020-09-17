@@ -1,7 +1,9 @@
 var statement2=document.getElementById("matter");
 var CorpusPara=document.getElementById("corpuspara");
-var submit=document.getElementById("submit");
+var submit1=document.getElementById("submit1");
 var result1=document.getElementById("result1");
+var newMsg=document.getElementById("newmsg");
+var submit2=document.getElementById("submit2");
 var numOfTokens,numOfTypes;
 var corpus=[
   'A mouse was having a very bad time. She could find no food at all. She looked here and there, but there was no food, and she grew very thin. At last the mouse found a basket, full of corn. There was a small hole in the basket, and she crept in. She could just get through the hole. Then she began to eat the corn. Being very hungry, she ate a great deal, and went on eating and eating. She had grown very fat before she felt that she had had enough. When the mouse tried to climb out of the basket, she could not. She was too fat to pass through the hole. "How shall I climb out?" said the mouse. "oh, how shall I climb out?" Just then a rat came along, and he heard the mouse. "Mouse," said the rat, "if you want to climb out of the basket, you must wait till you have grown as thin as you were when you went in.',
@@ -18,6 +20,7 @@ function getOption(value)
   }
   else if(value=="corpus1")
   {
+    initialize();
     CorpusPara.innerHTML=corpus[0]+"<br>"+"<br>"+
     "<center>Enter the number of tokens and types for the above corpus:"+"<br>"+
     "<table class='table table-bordered'><tr><td>#tokens: </td><td><input type='text' id='tokeninput' size='6'></td></tr><tr><td>#types: </td><td><input type='text' id='typeinput' size='6'></td></tr></table></center>";
@@ -25,6 +28,7 @@ function getOption(value)
    }
   else if(value=="corpus2")
   {
+    initialize();
      CorpusPara.innerHTML=corpus[1]+"<br>"+"<br>"+
     "<center>Enter the number of tokens and types for the above corpus:"+"<br>"+
     "<table class='table table-bordered'><tr><td>#tokens: </td><td><input type='text' id='tokeninput' size='6'></td></tr><tr><td>#types: </td><td><input type='text' id='typeinput' size='6'></td></tr></table></center>";
@@ -33,6 +37,7 @@ function getOption(value)
 
   else if(value=="corpus3")
   {
+     initialize();
      CorpusPara.innerHTML=corpus[2]+"<br>"+"<br>"+
     "<center>Enter the number of tokens and types for the above corpus:"+"<br>"+
     "<table class='table table-bordered'><tr><td>#tokens: </td><td><input type='text' id='tokeninput' size='6'></td></tr><tr><td>#types: </td><td><input type='text' id='typeinput' size='6'></td></tr></table></center>";
@@ -42,15 +47,13 @@ function getOption(value)
 }
 function submitbton(pasg)
 {
-  submit.innerHTML="<button class='btn btn-primary' id='submit' value='submit' onclick='check()'><b>SUBMIT</b></button>";
+  submit1.innerHTML="<button class='btn btn-primary' id='submit' value='submit' onclick='check()'><b>SUBMIT</b></button>";
   var modPasg=pasg.replace(/[^a-zA-Z ]/g, "");
   modPasg=modPasg.toLowerCase();
   modPasg=modPasg.split(" ");
   numOfTokens=modPasg.length;
-  console.log(numOfTokens);
   var distinct=new Set(modPasg);
   numOfTypes=distinct.size;
-  console.log(numOfTypes);
   result1.innerHTML="";
 }
 function check()
@@ -76,23 +79,36 @@ function check()
   if(numOfTokens==TokenAns&&numOfTypes==TypeAns)
   {
     result1.innerHTML="<font color='Green'><b>RIGHT ANSWER !!!</b></font>"+"<br>"+"<br>"+
-    "<button class='btn btn-primary' id='continue' onclick='continuefun'><b>CONTINUE</b></button>";
+    "<button class='btn btn-primary' id='continue' onclick='continuefun()'><b>CONTINUE</b></button>";
   }
   else{
     result1.innerHTML="<font color='Red'><b>WRONG ANSWER  :(</b></font>";
   }
 
 }
+function continuefun()
+{
+ result1.innerHTML="";
+ submit1.innerHTML="";
+ newMsg.innerHTML="Now, consider all the tokens with the same 'root' word to be of the same type. Recalculate the number of types."+
+  "<br>"+"#new types:"+"<br>"+"<input type='text' id='newinput'>";
+  submit2.innerHTML="<button class='btn btn-primary' id='submit2' value='submit' onclick='stemmingfun'><b>SUBMIT</b></button>";
+
+}
 
 function initialize()
 {
   CorpusPara.innerHTML="";
+  newMsg.innerHTML="";
+  submit1.innerHTML="";
+  submit2.innerHTML="";
 }
  
  function introduction()
 {
   document.getElementById("exp").style.display="none";
   initialize();
+  document.getElementById("corpus").value="null";
   statement2.innerHTML=
    "<br>"+"<h4><b>Introduction:</b></h4>"+
    "<br>"+"Tokens correspond to the total number of word counts in a text while type corresponds to the total count of unique words in a text."+"<br>"+"<br>"
@@ -102,6 +118,7 @@ function initialize()
  {
   document.getElementById("exp").style.display="none";
   initialize();
+  document.getElementById("corpus").value="null";
   statement2.innerHTML=
   "<br>"+"<h4><b>Theory:</b></h4>"+
   "<br>"+"<h5><b>Definition</b></h5>"+
@@ -112,6 +129,7 @@ function initialize()
  {
   document.getElementById("exp").style.display="none";
   initialize();
+  document.getElementById("corpus").value="null";
   statement2.innerHTML=
  "<br>"+"<h4><b>Objective:</b></h4>"+
   "<br>"+"The objective of this experiment is to impart basic knowledge about the distinction between types and tokens.";
@@ -125,6 +143,7 @@ function initialize()
 function quizzes(){
   document.getElementById("exp").style.display="none";
   initialize();
+  document.getElementById("corpus").value="null";
   statement2.innerHTML=
   "<br>"+"<h4><b>Quizzes:</b></h4>"+"<br>"+
   "Give number of types and tokens for the following sentences:<ol><li>What did you do?</li><li>Two and two makes four.</li><li>Ram eats an apple afteat eating a banana.</li><li>April will come here after 10th of April.</li><li>John drinks tea and George takes cold drink.</li></ol>";
@@ -132,6 +151,7 @@ function quizzes(){
  function procedure(){
   document.getElementById("exp").style.display="none";
   initialize();
+  document.getElementById("corpus").value="null";
   statement2.innerHTML=
   "<br>"+"<h4><b>Procedure:</b></h4>"+"<br>"+
   "<u><b>STEP 1 :</b></u> Select the corpus."+"<br>"+
