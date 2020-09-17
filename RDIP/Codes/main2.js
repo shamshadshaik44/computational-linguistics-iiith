@@ -1,6 +1,8 @@
 var statement2=document.getElementById("matter");
 var CorpusPara=document.getElementById("corpuspara");
-
+var submit=document.getElementById("submit");
+var result1=document.getElementById("result1");
+var numOfTokens,numOfTypes;
 var corpus=[
   'A mouse was having a very bad time. She could find no food at all. She looked here and there, but there was no food, and she grew very thin. At last the mouse found a basket, full of corn. There was a small hole in the basket, and she crept in. She could just get through the hole. Then she began to eat the corn. Being very hungry, she ate a great deal, and went on eating and eating. She had grown very fat before she felt that she had had enough. When the mouse tried to climb out of the basket, she could not. She was too fat to pass through the hole. "How shall I climb out?" said the mouse. "oh, how shall I climb out?" Just then a rat came along, and he heard the mouse. "Mouse," said the rat, "if you want to climb out of the basket, you must wait till you have grown as thin as you were when you went in.',
   'A wolf carried off a lamb. The lamb said, "I know you are going to eat me, but before you eat me I would like to hear you play the flute. I have heard that you can play the flute better than anyone else, even the shepherd himself." The wolf was so pleased at this that he took out his flute and began to play. When he had done, the lamb insisted him to play once more and the wolf played again. The shepherd and the dogs heard the sound, and they came running up and fell on the wolf and the lamb was able to get back to the flock.',
@@ -19,21 +21,69 @@ function getOption(value)
     CorpusPara.innerHTML=corpus[0]+"<br>"+"<br>"+
     "<center>Enter the number of tokens and types for the above corpus:"+"<br>"+
     "<table class='table table-bordered'><tr><td>#tokens: </td><td><input type='text' id='tokeninput' size='6'></td></tr><tr><td>#types: </td><td><input type='text' id='typeinput' size='6'></td></tr></table></center>";
-  }
+     submitbton(corpus[0]);
+   }
   else if(value=="corpus2")
   {
      CorpusPara.innerHTML=corpus[1]+"<br>"+"<br>"+
     "<center>Enter the number of tokens and types for the above corpus:"+"<br>"+
     "<table class='table table-bordered'><tr><td>#tokens: </td><td><input type='text' id='tokeninput' size='6'></td></tr><tr><td>#types: </td><td><input type='text' id='typeinput' size='6'></td></tr></table></center>";
-  }
+     submitbton(corpus[1]);
+    } 
+
   else if(value=="corpus3")
   {
      CorpusPara.innerHTML=corpus[2]+"<br>"+"<br>"+
     "<center>Enter the number of tokens and types for the above corpus:"+"<br>"+
     "<table class='table table-bordered'><tr><td>#tokens: </td><td><input type='text' id='tokeninput' size='6'></td></tr><tr><td>#types: </td><td><input type='text' id='typeinput' size='6'></td></tr></table></center>";
-  }
+     submitbton(corpus[2]);
+}
     
 }
+function submitbton(pasg)
+{
+  submit.innerHTML="<button class='btn btn-primary' id='submit' value='submit' onclick='check()'><b>SUBMIT</b></button>";
+  var modPasg=pasg.replace(/[^a-zA-Z ]/g, "");
+  modPasg=modPasg.toLowerCase();
+  modPasg=modPasg.split(" ");
+  numOfTokens=modPasg.length;
+  console.log(numOfTokens);
+  var distinct=new Set(modPasg);
+  numOfTypes=distinct.size;
+  console.log(numOfTypes);
+  result1.innerHTML="";
+}
+function check()
+{
+  var TokenAns=document.getElementById("tokeninput").value;
+  var TypeAns=document.getElementById("typeinput").value;
+  if(numOfTokens==TokenAns)
+  {
+    document.getElementById("tokeninput").style.backgroundColor="Green";
+  }
+  else
+  {
+    document.getElementById("tokeninput").style.backgroundColor="Red";
+  }
+  if(numOfTypes==TypeAns)
+  {
+    document.getElementById("typeinput").style.backgroundColor="Green";
+  }
+  else
+  {
+    document.getElementById("typeinput").style.backgroundColor="Red";
+  }
+  if(numOfTokens==TokenAns&&numOfTypes==TypeAns)
+  {
+    result1.innerHTML="<font color='Green'><b>RIGHT ANSWER !!!</b></font>"+"<br>"+"<br>"+
+    "<button class='btn btn-primary' id='continue' onclick='continuefun'><b>CONTINUE</b></button>";
+  }
+  else{
+    result1.innerHTML="<font color='Red'><b>WRONG ANSWER  :(</b></font>";
+  }
+
+}
+
 function initialize()
 {
   CorpusPara.innerHTML="";
