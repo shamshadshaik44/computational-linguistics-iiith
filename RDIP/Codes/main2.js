@@ -137,7 +137,7 @@ function stemmingfun()
     if(len==newTypes)
   {
     document.getElementById("newinput").style.backgroundColor="Green";
-    result2.innerHTML="<font color='Green'><b>RIGHT ANSWER!!!</b></font>";
+    result2.innerHTML="<font color='Green'><b>RIGHT ANSWER!!!! :)</b></font>";
   }
   else
   {
