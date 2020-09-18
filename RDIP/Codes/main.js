@@ -251,6 +251,7 @@ function initialize()
  {
   document.getElementById("exp").style.display="none";
   initialize();
+  document.getElementById("lang").value="null";
   statement0.innerHTML="";
    statement2.innerHTML=
    "<br>"+"<h4><b>Introduction:</b></h4>"+
@@ -261,6 +262,7 @@ function initialize()
  {
   document.getElementById("exp").style.display="none";
   initialize();
+  document.getElementById("lang").value="null";
   statement0.innerHTML="";
   statement2.innerHTML=
   "<br>"+"<h4><b>Theory:</b></h4>"+
@@ -274,6 +276,7 @@ function initialize()
  {
   document.getElementById("exp").style.display="none";
   initialize();
+  document.getElementById("lang").value="null";
   statement0.innerHTML="";
   statement2.innerHTML=
  "<br>"+"<h4><b>Objective:</b></h4>"+
@@ -290,6 +293,7 @@ function initialize()
  function procedure(){
   document.getElementById("exp").style.display="none";
   initialize();
+  document.getElementById("lang").value="null";
   statement0.innerHTML="";
   statement2.innerHTML=
   "<br>"+"<h4><b>Procedure:</b></h4>"+"<br>"+
