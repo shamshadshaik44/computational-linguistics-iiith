@@ -189,7 +189,10 @@ function initialize()
  {
   statement2.innerHTML=
   "<br>"+"<h4><b>Experiment:</b></h4>";
+   result1.innerHTML="";
+  result2.innerHTML="";
   document.getElementById("exp").style.display="block";
+
  }
 function quizzes(){
   document.getElementById("exp").style.display="none";
