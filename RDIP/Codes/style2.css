@@ -8,14 +8,7 @@ div{
 .content{
 	font-size: 1.35em;
 }
-button
-{  
- cursor: pointer; 
- margin-right: 20px;
- border-radius:5px;
- background-color: #0b3141;
- color:white;
-}
+
 select{
 	font-size: 1.25em;
 	border-radius: 5px;
@@ -67,4 +60,11 @@ select{
 .dynamicbtn
 {
 	margin-right: 15px;
+}
+.table{
+	width:20%;
+}
+table.table-bordered >tr > td
+{
+	border:2px solid black;
 }
