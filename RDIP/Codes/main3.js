@@ -3,6 +3,7 @@ var corpDropdown=document.getElementById("corpdropdown");
 var dynamicTbl=document.getElementById("dynamictbl");
 var tblmatter=document.getElementById("tblmatter");
 var submit=document.getElementById("submit");
+var getans=document.getElementById("getansbtn");
 var lan,sent;
   var engCorp=[
     'The child liked the chocolate.',
@@ -18,6 +19,17 @@ var lan,sent;
     'वाह! वह खूबसूरत है।',
     'पेड़ से पत्ते गिर गए।',
   ];
+var pos = require[('pos')];
+var words = new pos.Lexer().lex('This is some sample text. This text can contain multiple sentences.');
+var tagger = new pos.Tagger();
+var taggedWords = tagger.tag(words);
+for (i in taggedWords) {
+    var taggedWord = taggedWords[i];
+    var word = taggedWord[0];
+    var tag = taggedWord[1];
+    console.log(word + " /" + tag);
+}
+
 
 function getOption(value)
 {
@@ -131,8 +143,8 @@ function getOption2(val)
     for (i = 0; i < modString.length; i++) {
       rows +=
         '<tr><td>' +modString[i] +
-        "</td><td><select id='w" +i +"'><option value = 'Noun' selected>Noun</option><option value = 'Pronoun'>Pronoun</option><option value = 'Verb'>Verb</option><option value = 'Adjective'>Adjective</option><option value = 'Adverb'>Adverb</option><option value = 'Postposition'>Postposition</option><option value = 'Conjunction'>Conjunction</option><option value = 'Interjection'>Interjection</option></select><td id=res" +i +
-        " width='50px'></td><td id=answer" +i +
+        "</td><td><select id='s" +i +"'><option value = 'Noun' selected>Noun</option><option value = 'Pronoun'>Pronoun</option><option value = 'Verb'>Verb</option><option value = 'Adjective'>Adjective</option><option value = 'Adverb'>Adverb</option><option value = 'Postposition'>Postposition</option><option value = 'Conjunction'>Conjunction</option><option value = 'Interjection'>Interjection</option></select><td id=tick" +i +
+        " width='50px'></td><td id=ans" +i +
         " width='50px'></td></tr>";
     }
   }
@@ -142,6 +154,497 @@ function getOption2(val)
   submit.innerHTML =
     "<br><button class='btn btn-primary'id='submit' onclick='check()'><b>SUBMIT</b></button></center>";
   }
+function check() {
+  if (lan == 'english') {
+    correctanswers = [];
+    flag = 0;
+    selectedoption = '';
+    words = new pos.Lexer().lex(str);
+    tagger = new pos.Tagger();
+    taggedWords = tagger.tag(words);
+    var j = 0;
+    strarray = str.split(' ');
+    if (str.charAt(str.length - 1) == '.') {
+      taggedWords.pop(); //to ignore dot ( . )
+      for (i in taggedWords) {
+        taggedWord = taggedWords[i];
+        word = taggedWord[0];
+        tag = taggedWord[1];
+        if (j < strarray.length) {
+          selectedoption = document.getElementById('s' + j).value;
+          correctanswers.push(tag);
+          verifyans(selectedoption, tag);
+          j++;
+        }
+      }
+    } else {
+      for (i in taggedWords) {
+        taggedWord = taggedWords[i];
+        word = taggedWord[0];
+        tag = taggedWord[1];
+        correctanswers.push(tag);
+        selectedoption = document.getElementById('s' + i).value;
+        verifyans(selectedoption, tag);
+      }
+    }
+  }
+  if (lan== 'hindi') {
+    flag = 0;
+    correctanswers = [];
+    selectedoption = '';
+    strarray = str.split(' ');
+    if (sent == 'senth1') {
+      flag = 0;
+      correctanswers = [];
+      correctanswers = [
+        'Noun',
+        'Postposition',
+        'Noun',
+        'Postposition',
+        'Postposition',
+        'Noun',
+        'Verb',
+      ];
+      selectedoption = document.getElementById('s0').value;
+      if (selectedoption == 'Noun') {
+        flag++;
+        document.getElementById('tick0').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      } else {
+        document.getElementById('tick0').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+      }
+
+      selectedoption = document.getElementById('s1').value;
+      if (selectedoption == 'Postposition') {
+        flag++;
+        document.getElementById('tick1').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      } else {
+        document.getElementById('tick1').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+      }
+
+      selectedoption = document.getElementById('s2').value;
+      if (selectedoption == 'Noun') {
+        flag++;
+        document.getElementById('tick2').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      } else {
+        document.getElementById('tick2').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+      }
+
+      selectedoption = document.getElementById('s3').value;
+      if (selectedoption == 'Postposition') {
+        flag++;
+        document.getElementById('tick3').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      } else {
+        document.getElementById('tick3').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+      }
+
+      selectedoption = document.getElementById('s4').value;
+      if (selectedoption == 'Postposition') {
+        flag++;
+        document.getElementById('tick4').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      } else {
+        document.getElementById('tick4').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+      }
+
+      selectedoption = document.getElementById('s5').value;
+      if (selectedoption == 'Noun') {
+        flag++;
+        document.getElementById('tick5').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      } else {
+        document.getElementById('tick5').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+      }
+
+      selectedoption = document.getElementById('s6').value;
+      if (selectedoption == 'Verb') {
+        flag++;
+        document.getElementById('tick6').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      } else {
+        document.getElementById('tick6').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+      }
+    }
+    if (sent == 'senth2') {
+      flag = 0;
+      correctanswers = [];
+      selectedoption = document.getElementById('s0').value;
+      correctanswers = ['Adjective', 'Noun', 'Noun', 'Adverb', 'Verb'];
+      if (selectedoption == 'Adjective') {
+        flag++;
+        document.getElementById('tick0').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      } else {
+        document.getElementById('tick0').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+      }
+
+      selectedoption = document.getElementById('s1').value;
+      if (selectedoption == 'Noun') {
+        flag++;
+        document.getElementById('tick1').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      } else {
+        document.getElementById('tick1').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+      }
+
+      selectedoption = document.getElementById('s2').value;
+      if (selectedoption == 'Noun') {
+        flag++;
+        document.getElementById('tick2').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      } else {
+        document.getElementById('tick2').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+      }
+
+      selectedoption = document.getElementById('s3').value;
+      if (selectedoption == 'Adverb') {
+        flag++;
+        document.getElementById('tick3').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      } else {
+        document.getElementById('tick3').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+      }
+
+      selectedoption = document.getElementById('s4').value;
+      if (selectedoption == 'Verb') {
+        flag++;
+        document.getElementById('tick4').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      } else {
+        document.getElementById('tick4').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+      }
+    }
+    if (sent == 'senth3') {
+      flag = 0;
+      correctanswers = [];
+      selectedoption = document.getElementById('s0').value;
+      correctanswers = [
+        'Noun',
+        'Postposition',
+        'Noun',
+        'Adjective',
+        'Verb',
+        'Verb',
+      ];
+      if (selectedoption == 'Noun') {
+        flag++;
+        document.getElementById('tick0').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      } else {
+        document.getElementById('tick0').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+      }
+
+      selectedoption = document.getElementById('s1').value;
+      if (selectedoption == 'Postposition') {
+        flag++;
+        document.getElementById('tick1').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      } else {
+        document.getElementById('tick1').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+      }
+
+      selectedoption = document.getElementById('s2').value;
+      if (selectedoption == 'Noun') {
+        flag++;
+        document.getElementById('tick2').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      } else {
+        document.getElementById('tick2').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+      }
+
+      selectedoption = document.getElementById('s3').value;
+      if (selectedoption == 'Adjective') {
+        flag++;
+        document.getElementById('tick3').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      } else {
+        document.getElementById('tick3').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+      }
+
+      selectedoption = document.getElementById('s4').value;
+      if (selectedoption == 'Verb') {
+        flag++;
+        document.getElementById('tick4').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      } else {
+        document.getElementById('tick4').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+      }
+
+      selectedoption = document.getElementById('s5').value;
+      if (selectedoption == 'Verb') {
+        flag++;
+        document.getElementById('tick5').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      } else {
+        document.getElementById('tick5').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+      }
+    }
+    if (sent == 'senth4') {
+      flag = 0;
+      correctanswers = [];
+      selectedoption = document.getElementById('s0').value;
+      correctanswers = ['Interjection', 'Pronoun', 'Adjective', 'Verb'];
+      if (selectedoption == 'Interjection') {
+        flag++;
+        document.getElementById('tick0').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      } else {
+        document.getElementById('tick0').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+      }
+
+      selectedoption = document.getElementById('s1').value;
+      if (selectedoption == 'Pronoun') {
+        flag++;
+        document.getElementById('tick1').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      } else {
+        document.getElementById('tick1').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+      }
+
+      selectedoption = document.getElementById('s2').value;
+      if (selectedoption == 'Adjective') {
+        flag++;
+        document.getElementById('tick2').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      } else {
+        document.getElementById('tick2').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+      }
+
+      selectedoption = document.getElementById('s3').value;
+      if (selectedoption == 'Verb') {
+        flag++;
+        document.getElementById('tick3').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      } else {
+        document.getElementById('tick3').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+      }
+    }
+    if (sent == 'senth5') {
+      flag = 0;
+      correctanswers = [];
+      selectedoption = document.getElementById('s0').value;
+      correctanswers = ['Noun', 'Postposition', 'Noun', 'Verb', 'Verb'];
+      if (selectedoption == 'Noun') {
+        flag++;
+        document.getElementById('tick0').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      } else {
+        document.getElementById('tick0').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+      }
+
+      selectedoption = document.getElementById('s1').value;
+      if (selectedoption == 'Postposition') {
+        flag++;
+        document.getElementById('tick1').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      } else {
+        document.getElementById('tick1').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+      }
+
+      selectedoption = document.getElementById('s2').value;
+      if (selectedoption == 'Noun') {
+        flag++;
+        document.getElementById('tick2').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      } else {
+        document.getElementById('tick2').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+      }
+
+      selectedoption = document.getElementById('s3').value;
+      if (selectedoption == 'Verb') {
+        flag++;
+        document.getElementById('tick3').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      } else {
+        document.getElementById('tick3').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+      }
+
+      selectedoption = document.getElementById('s4').value;
+      if (selectedoption == 'Verb') {
+        flag++;
+        document.getElementById('tick4').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      } else {
+        document.getElementById('tick4').innerHTML =
+          "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+      }
+    }
+  }
+  if (flag != strarray.length) {
+    f1++;
+    getans.innerHTML =
+      "<br><center><button id='getans' onclick='gettheanswers()'>Get Answers</button></center>";
+  } else {
+    if (f1 == 0) getans.innerHTML = '';
+  }
+}  
+function toggleans() {
+  getans.innerHTML =
+    "<br><center><button id='getans' onclick='gettheanswers()'>Get Answers</button></center>";
+  for (i = 0; i < strarray.length; i++) {
+    document.getElementById('ans' + i).innerHTML = '';
+  }
+}
+function gettheanswers() {
+  if (lan == 'english') {
+    for (i = 0; i < strarray.length; i++) {
+      if (nouns.includes(correctanswers[i])) {
+        document.getElementById('ans' + i).innerHTML = 'Noun';
+      }
+      if (pronouns.includes(correctanswers[i])) {
+        document.getElementById('ans' + i).innerHTML = 'Pronoun';
+      }
+      if (verbs.includes(correctanswers[i])) {
+        document.getElementById('ans' + i).innerHTML = 'Verb';
+      }
+      if (adjectives.includes(correctanswers[i])) {
+        document.getElementById('ans' + i).innerHTML = 'Adjective';
+      }
+      if (adverbs.includes(correctanswers[i])) {
+        document.getElementById('ans' + i).innerHTML = 'Adverb';
+      }
+      if (determiners.includes(correctanswers[i])) {
+        document.getElementById('ans' + i).innerHTML = 'Determiner';
+      }
+      if (prepositions.includes(correctanswers[i])) {
+        document.getElementById('ans' + i).innerHTML = 'Preposition';
+      }
+      if (conjunctions.includes(correctanswers[i])) {
+        document.getElementById('ans' + i).innerHTML = 'Conjunction';
+      }
+      if (interjections.includes(correctanswers[i])) {
+        document.getElementById('ans' + i).innerHTML = 'Interjection';
+      }
+    }
+  }
+  if (lan == 'hindi') {
+    for (i = 0; i < strarray.length; i++) {
+      document.getElementById('ans' + i).innerHTML = correctanswers[i];
+    }
+  }
+  getans.innerHTML =
+    "<br><center><button id='getans' onclick='toggleans()'>Hide Answers</button></center>";
+}
+function verifyans(selectedoption, tag) {
+  if (selectedoption == 'Noun') {
+    if (tag == 'NN' || tag == 'NNP' || tag == 'NNPS' || tag == 'NNS') {
+      document.getElementById('tick' + i).innerHTML =
+        "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      flag++;
+    } else {
+      document.getElementById('tick' + i).innerHTML =
+        "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+    }
+  } else if (selectedoption == 'Pronoun') {
+    if (tag == 'PRP$' || tag == 'PRP' || tag == 'WP') {
+      document.getElementById('tick' + i).innerHTML =
+        "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      flag++;
+    } else {
+      document.getElementById('tick' + i).innerHTML =
+        "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+    }
+  } else if (selectedoption == 'Verb') {
+    if (
+      tag == 'VB' ||
+      tag == 'VBD' ||
+      tag == 'VBG' ||
+      tag == 'VBN' ||
+      tag == 'VBP' ||
+      tag == 'VBZ'
+    ) {
+      document.getElementById('tick' + i).innerHTML =
+        "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      flag++;
+    } else {
+      document.getElementById('tick' + i).innerHTML =
+        "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+    }
+  } else if (selectedoption == 'Adjective') {
+    if (tag == 'JJ' || tag == 'JJS' || tag == 'JJR') {
+      document.getElementById('tick' + i).innerHTML =
+        "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      flag++;
+    } else {
+      document.getElementById('tick' + i).innerHTML =
+        "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+    }
+  } else if (selectedoption == 'Adverb') {
+    if (tag == 'RB' || tag == 'RBR' || tag == 'RBS' || tag == 'WRB') {
+      document.getElementById('tick' + i).innerHTML =
+        "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      flag++;
+    } else {
+      document.getElementById('tick' + i).innerHTML =
+        "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+    }
+  } else if (selectedoption == 'Determiner') {
+    if (tag == 'DT' || tag == 'PDT' || tag == 'WDT') {
+      document.getElementById('tick' + i).innerHTML =
+        "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      flag++;
+    } else {
+      document.getElementById('tick' + i).innerHTML =
+        "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+    }
+  } else if (selectedoption == 'Preposition') {
+    if (tag == 'IN') {
+      document.getElementById('tick' + i).innerHTML =
+        "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      flag++;
+    } else {
+      document.getElementById('tick' + i).innerHTML =
+        "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+    }
+  } else if (selectedoption == 'Conjunction') {
+    if (tag == 'CC') {
+      document.getElementById('tick' + i).innerHTML =
+        "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      flag++;
+    } else {
+      document.getElementById('tick' + i).innerHTML =
+        "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+    }
+  } else if (selectedoption == 'Interjection') {
+    if (tag == 'UH') {
+      document.getElementById('tick' + i).innerHTML =
+        "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+      flag++;
+    } else {
+      document.getElementById('tick' + i).innerHTML =
+        "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+    }
+  }
+}
 
 function initialize()
 {
