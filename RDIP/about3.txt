@@ -1,0 +1,8 @@
+1.create a dropdown list for selecting language
+2.create dropdown list of sentences.
+3.create a table which is dynamic having first column words of the sentence and corresponding pos in second column
+each dropdown is having parts of speech
+degault is noun.
+4.third and fourth column should be empty .
+5.when on clicking submit the third column would be populated with ticks and croses.
+6.if it is wrong create a get answer button where corresponding answers are shown in 4th column.
