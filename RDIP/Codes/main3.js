@@ -1,6 +1,9 @@
 var statement2=document.getElementById("matter");
 var corpDropdown=document.getElementById("corpdropdown");
-var lan;
+var dynamicTbl=document.getElementById("dynamictbl");
+var tblmatter=document.getElementById("tblmatter");
+var submit=document.getElementById("submit");
+var lan,sent;
   var engCorp=[
     'The child liked the chocolate.',
     'She was stopped by the bravest knight.',
@@ -29,30 +32,117 @@ function getOption(value)
   {
     initialize();
     lan="english";
-    corpDropdown.innerHTML="<br>"+"<br>"+"<select class='select btn-primary' id='engDrop' name='sentence' data-style='btn-info' onchange='getOption2(this.value);>"+
-        "<option value='null'>"+"---select a sentence---"+"</option>"+
-        "<option value='null'>"+"-------Select a Sentence------"+"</option>"+
-        "<option value='sent1'>"+engCorp[0]+"</option>"+
-        "<option value='sent2'>"+engCorp[1]+"</option>"+
-        "<option value='sent3'>"+engCorp[2]+"</option>"+
-        "<option value='sent4'>"+engCorp[3]+"</option>"+
-        "<option value='sent5'>"+engCorp[4]+"</option></select>";
-  }
+    corpDropdown.innerHTML="<br>"+"<br>"+"<select class='select btn-primary' id='engDrop' onchange = 'getOption2(this.id)'><option value='null'>---Select a sentence---</option><option value='sente1'>" +
+      engCorp[0] +
+      "</option><option value='sente2'>" +
+      engCorp[1]+
+      "</option><option value='sente3'>" +
+        engCorp[2] +
+      "</option><option value='sente4'>" +
+      engCorp[3] +
+      "</option><option value='sente5'>" +
+      engCorp[4] +
+      '</option></select>';
+ } 
   else if(value=="hindi")
   {
     initialize();
     lan="hindi";
-    corpDropdown.innerHTML="<br>"+"<br>"+"<select class='selectpicker btn-primary' id='hinDrop' name='sentence' data-style='btn-info' onchange='getOption(this.value);>"+
-        "<option value='null'>--Select a Sentence--</option>"+
-        "<option value='null'>"+"-------Select a Sentence------"+"</option>"+
-        "<option value='sent1'>"+hinCorp[0]+"</option>"+
-        "<option value='sent2'>"+hinCorp[1]+"</option>"+
-        "<option value='sent3'>"+hinCorp[2]+"</option>"+
-        "<option value='sent4'>"+hinCorp[3]+"</option>"+
-        "<option value='sent5'>"+hinCorp[4]+"</option></select>";
-      } 
+     corpDropdown.innerHTML="<br>"+"<br>"+"<select class='select btn-primary' id='hinDrop' onchange = 'getOption2(this.id)'><option value='null'>---Select a sentence---</option><option value='senth1'>" +
+      hinCorp[0] +
+      "</option><option value='senth2'>" +
+      hinCorp[1]+
+      "</option><option value='senth3'>" +
+        hinCorp[2] +
+      "</option><option value='senth4'>" +
+      hinCorp[3] +
+      "</option><option value='senth5'>" +
+      hinCorp[4] +
+      '</option></select>';
+    }
 
 }
+function getOption2(val)
+{
+  dynamicTbl.innerHTML =
+    "<br><b>Select the POS tag for corresponding words</font></b><br>";
+  sent = '';
+  if (val == "engDrop") {
+    sent= document.getElementById(val).value;
+    if (sent == 'null') {
+      alert('Select a sentence');
+    }
+    if (sent == 'sente1') {
+      createtbl(engCorp[0]);
+    }
+    if (sent == 'sente2') {
+      createtbl(engCorp[1]);
+    }
+    if (sent == 'sente3') {
+      createtbl(engCorp[2]);
+    }
+    if (sent== 'sente4') {
+      createtbl(engCorp[3]);
+    }
+    if (sent == 'sente5') {
+      createtbl(engCorp[4]);
+    }
+  }
+ else if (val== 'hinDrop') {
+    sent = document.getElementById(val).value;
+    if (sent == 'null') {
+      alert('Select a sentence');
+      }
+    if (sent == 'senth1') {
+      createtbl(hinCorp[0]);
+    }
+    if (sent == 'senth2') {
+      createtbl(hinCorp[1]);
+    }
+    if (sent == 'senth3') {
+      createtbl(hinCorp[2]);
+    }
+    if (sent== 'senth4') {
+      createtbl(hinCorp[3]);
+    }
+    if (sent == 'senth5') {
+      createtbl(hinCorp[4]);
+    }
+  }
+  }
+  function createtbl(string)
+  {
+ 
+  var rows = '';
+  var modString = '';
+  modString = string.split(' ');
+  if (lan == 'english') {
+    rows = '';
+    for (var i = 0; i < modString.length; i++) {
+      rows +=
+        '<tr><td>' + modString[i] +
+        "</td><td><select id= 'w" +i +
+        "'><option value = 'Noun' selected>Noun</option><option value = 'Pronoun'>Pronoun</option><option value = 'Verb'>Verb</option><option value = 'Adjective'>Adjective</option><option value = 'Adverb'>Adverb</option><option value = 'Determiner'>Determiner</option><option value = 'Preposition'>Preposition</option><option value = 'Conjunction'>Conjunction</option><option value = 'Interjection'>Interjection</option></select></td><td id=res" + i +
+        " width='50px'></td><td id=answer" + i +
+        " width='50px'></td></tr>";
+    }
+  } else if (lan == 'hindi') {
+    rows = '';
+    for (i = 0; i < modString.length; i++) {
+      rows +=
+        '<tr><td>' +modString[i] +
+        "</td><td><select id='w" +i +"'><option value = 'Noun' selected>Noun</option><option value = 'Pronoun'>Pronoun</option><option value = 'Verb'>Verb</option><option value = 'Adjective'>Adjective</option><option value = 'Adverb'>Adverb</option><option value = 'Postposition'>Postposition</option><option value = 'Conjunction'>Conjunction</option><option value = 'Interjection'>Interjection</option></select><td id=res" +i +
+        " width='50px'></td><td id=answer" +i +
+        " width='50px'></td></tr>";
+    }
+  }
+  tblmatter.innerHTML =
+    '<center><table class="table table-bordered" id="dptable"><tr><th>LEXICON</th><th>POS</th><th></th><th></th></tr><tr></td></tr>'+rows +
+    '</table>';
+  submit.innerHTML =
+    "<br><button class='btn btn-primary'id='submit' onclick='check()'><b>SUBMIT</b></button></center>";
+  }
+
 function initialize()
 {
   corpdropdown.innerHTML="";
