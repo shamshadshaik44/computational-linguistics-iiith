@@ -146,6 +146,9 @@ function getOption2(val)
 function initialize()
 {
   corpdropdown.innerHTML="";
+  tblmatter.innerHTML="";
+  submit.innerHTML="";
+  dynamicTbl.innerHTML="";
 }
 
  function introduction()
